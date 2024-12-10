@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planificador de Menús</title>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Planificador de Menús Semanales</h1>
+    </header>
+
+    <main>
+      <!-- Sección de Ingredientes -->
+      <section id="ingredients">
+        <h2>Ingredientes Disponibles</h2>
+        <div id="ingredients-list">
+          <input
+            type="text"
+            id="ingredient-input"
+            placeholder="Agregar un ingrediente..."
+          />
+          <button id="add-ingredient-btn">Agregar</button>
+          <ul id="ingredient-list"></ul>
+        </div>
+      </section>
+
+      <!-- Sección del Calendario -->
+      <section id="calendar">
+        <h2>Calendario Semanal</h2>
+        <div id="weekly-calendar">
+          <div class="day" data-day="monday">
+            <h3>Lunes</h3>
+            <div class="dropzone"></div>
+          </div>
+          <div class="day" data-day="tuesday">
+            <h3>Martes</h3>
+            <div class="dropzone"></div>
+          </div>
+          <div class="day" data-day="wednesday">
+            <h3>Miércoles</h3>
+            <div class="dropzone"></div>
+          </div>
+          <div class="day" data-day="thursday">
+            <h3>Jueves</h3>
+            <div class="dropzone"></div>
+          </div>
+          <div class="day" data-day="friday">
+            <h3>Viernes</h3>
+            <div class="dropzone"></div>
+          </div>
+          <div class="day" data-day="saturday">
+            <h3>Sábado</h3>
+            <div class="dropzone"></div>
+          </div>
+          <div class="day" data-day="sunday">
+            <h3>Domingo</h3>
+            <div class="dropzone"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección de Recetas -->
+      <section id="recipes">
+        <h2>Recetas Sugeridas</h2>
+        <div id="recipe-search">
+          <input
+            type="text"
+            id="recipe-input"
+            placeholder="Buscar recetas..."
+          />
+          <button id="search-recipe-btn">Buscar</button>
+        </div>
+        <div id="recipe-results"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2024 Planificador de Menús</p>
+    </footer>
+
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
