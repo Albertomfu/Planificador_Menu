@@ -41,3 +41,43 @@ days.forEach((day) => {
     event.target.appendChild(newItem);
   });
 });
+
+document
+  .getElementById("search-recipe-btn")
+  .addEventListener("click", function () {
+    const query = document.getElementById("recipe-input").value.trim();
+    if (query) {
+      // Simulamos la búsqueda de recetas con un array de ejemplo
+      const recipes = [
+        {
+          name: "Tortilla de Patatas",
+          description: "Una receta española con papas y huevos.",
+        },
+        {
+          name: "Ensalada de Atún",
+          description: "Una ensalada fresca con atún y verduras.",
+        },
+        // Añadir más recetas aquí...
+      ];
+
+      const filteredRecipes = recipes.filter((recipe) =>
+        recipe.name.toLowerCase().includes(query.toLowerCase())
+      );
+
+      const resultsDiv = document.getElementById("recipe-results");
+      resultsDiv.innerHTML = ""; // Limpiar resultados anteriores
+
+      filteredRecipes.forEach((recipe) => {
+        const recipeItem = document.createElement("div");
+        recipeItem.classList.add("recipe-item");
+        recipeItem.innerHTML = `
+          <h3>${recipe.name}</h3>
+          <p>${recipe.description}</p>
+          <button>Agregar al Menú</button>
+        `;
+        resultsDiv.appendChild(recipeItem);
+      });
+    } else {
+      alert("Por favor, ingresa un nombre de receta para buscar.");
+    }
+  });
