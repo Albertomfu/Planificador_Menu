@@ -81,3 +81,49 @@ document
       alert("Por favor, ingresa un nombre de receta para buscar.");
     }
   });
+
+// Variables globales
+let draggedIngredient = null;
+
+// Agregar la funcionalidad de arrastrar
+document.querySelectorAll("#ingredient-list li").forEach((item) => {
+  item.draggable = true; // Hacer que los elementos sean arrastrables
+
+  item.addEventListener("dragstart", function (event) {
+    draggedIngredient = event.target; // Guardar el ingrediente arrastrado
+    setTimeout(function () {
+      event.target.style.display = "none"; // Hacer invisible el ingrediente mientras se arrastra
+    }, 0);
+  });
+
+  item.addEventListener("dragend", function (event) {
+    setTimeout(function () {
+      draggedIngredient.style.display = "block"; // Restaurar el ingrediente a su posición original
+      draggedIngredient = null;
+    }, 0);
+  });
+});
+
+// Agregar la funcionalidad de soltar en las zonas del calendario (dropzones)
+document.querySelectorAll(".dropzone").forEach((dropzone) => {
+  dropzone.addEventListener("dragover", function (event) {
+    event.preventDefault(); // Permitir que se pueda soltar
+    dropzone.classList.add("drag-over"); // Cambiar el fondo de la zona al arrastrar un ingrediente sobre ella
+  });
+
+  dropzone.addEventListener("dragleave", function () {
+    dropzone.classList.remove("drag-over"); // Volver al fondo original cuando se deja de arrastrar
+  });
+
+  dropzone.addEventListener("drop", function (event) {
+    event.preventDefault();
+    dropzone.classList.remove("drag-over"); // Remover el fondo de la zona cuando se ha soltado el ingrediente
+
+    // Crear una nueva copia del ingrediente arrastrado y añadirle la clase 'dropped-item'
+    const droppedIngredient = draggedIngredient.cloneNode(true);
+    droppedIngredient.classList.add("dropped-item"); // Aplicar el estilo de 'dropped-item'
+
+    // Agregar el ingrediente al calendario
+    dropzone.appendChild(droppedIngredient);
+  });
+});

@@ -147,6 +147,9 @@ h2 {
   position: relative;
   transition: background-color 0.3s ease;
 }
+.dropzone.drag-over {
+  background-color: #f0f0f0; /* Color de fondo de la zona cuando un ingrediente está sobre ella */
+}
 
 /* Sección de Recetas */
 #recipes {
