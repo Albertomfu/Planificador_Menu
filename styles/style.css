@@ -123,6 +123,20 @@ h2 {
   margin-bottom: 10px;
 }
 
+/* Estilos para los ingredientes arrastrados y soltados */
+.dropped-item {
+  background-color: #f39c12; /* Un color cálido para destacarlos */
+  border: 2px solid #e67e22; /* Un borde más destacado */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 5px;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Transición suave */
+}
 /* Transición suave cuando se arrastra un ingrediente */
 .dropzone {
   min-height: 80px;
