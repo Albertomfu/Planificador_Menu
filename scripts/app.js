@@ -111,3 +111,17 @@ document
       alert("Por favor, ingresa un nombre de receta para buscar.");
     }
   });
+
+// Agregar funcionalidad para eliminar ingredientes del calendario
+document.querySelectorAll(".dropzone").forEach((dropzone) => {
+  dropzone.addEventListener("click", function (event) {
+    if (event.target.classList.contains("dropped-item")) {
+      const confirmDelete = confirm(
+        "¿Quieres eliminar este ingrediente del calendario?"
+      );
+      if (confirmDelete) {
+        event.target.remove(); // Elimina el ingrediente seleccionado
+      }
+    }
+  });
+});
