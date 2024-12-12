@@ -125,3 +125,15 @@ document.querySelectorAll(".dropzone").forEach((dropzone) => {
     }
   });
 });
+
+// Agregar funcionalidad para editar ingredientes en el calendario
+document.querySelectorAll(".dropzone").forEach((dropzone) => {
+  dropzone.addEventListener("dblclick", function (event) {
+    if (event.target.classList.contains("dropped-item")) {
+      const newText = prompt("Edita el ingrediente:", event.target.textContent);
+      if (newText !== null && newText.trim() !== "") {
+        event.target.textContent = newText; // Actualiza el texto del ingrediente
+      }
+    }
+  });
+});
