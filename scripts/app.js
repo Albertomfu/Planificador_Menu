@@ -112,24 +112,26 @@ document
     }
   });
 
-// Agregar funcionalidad para eliminar ingredientes del calendario
 document.querySelectorAll(".dropzone").forEach((dropzone) => {
+  let clickTimer = null; // Temporizador para diferenciar clic y doble clic
+
   dropzone.addEventListener("click", function (event) {
     if (event.target.classList.contains("dropped-item")) {
-      const confirmDelete = confirm(
-        "¿Quieres eliminar este ingrediente del calendario?"
-      );
-      if (confirmDelete) {
-        event.target.remove(); // Elimina el ingrediente seleccionado
-      }
+      // Establecer temporizador para detectar clic único
+      clickTimer = setTimeout(() => {
+        const confirmDelete = confirm(
+          "¿Quieres eliminar este ingrediente del calendario?"
+        );
+        if (confirmDelete) {
+          event.target.remove(); // Elimina el ingrediente
+        }
+      }, 250); // Tiempo para diferenciar clic de doble clic
     }
   });
-});
 
-// Agregar funcionalidad para editar ingredientes en el calendario
-document.querySelectorAll(".dropzone").forEach((dropzone) => {
   dropzone.addEventListener("dblclick", function (event) {
     if (event.target.classList.contains("dropped-item")) {
+      clearTimeout(clickTimer); // Cancelar el temporizador del clic único
       const newText = prompt("Edita el ingrediente:", event.target.textContent);
       if (newText !== null && newText.trim() !== "") {
         event.target.textContent = newText; // Actualiza el texto del ingrediente
