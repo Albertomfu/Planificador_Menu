@@ -139,3 +139,91 @@ document.querySelectorAll(".dropzone").forEach((dropzone) => {
     }
   });
 });
+
+// Seleccionar elementos del DOM
+const recipeInput = document.getElementById("recipe-input");
+const searchRecipeBtn = document.getElementById("search-recipe-btn");
+const recipeResults = document.getElementById("recipe-results");
+
+// API Key de Spoonacular
+const API_KEY = "970d8ea12b4f46b4a870e2e1ac945a26";
+
+// Buscar recetas en la API
+async function fetchRecipes(query) {
+  try {
+    const response = await fetch(
+      `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=10&addRecipeInformation=true&apiKey=${API_KEY}`
+    );
+    const data = await response.json();
+
+    if (data.results.length > 0) {
+      displayRecipes(data.results);
+    } else {
+      recipeResults.innerHTML = "<p>No se encontraron recetas.</p>";
+    }
+  } catch (error) {
+    recipeResults.innerHTML = "<p>Error al cargar recetas.</p>";
+    console.error(error);
+  }
+}
+
+// Mostrar recetas en la interfaz
+function displayRecipes(recipes) {
+  recipeResults.innerHTML = "";
+
+  recipes.forEach((recipe) => {
+    const recipeCard = document.createElement("div");
+    recipeCard.classList.add("recipe-item");
+
+    recipeCard.innerHTML = `
+      <img src="${recipe.image}" alt="${recipe.title}" class="recipe-img" />
+      <h3>${recipe.title}</h3>
+      <button class="view-more-btn" data-id="${recipe.id}">Ver Más</button>
+    `;
+
+    recipeResults.appendChild(recipeCard);
+  });
+
+  // Agregar eventos a los botones "Ver Más"
+  const viewMoreButtons = document.querySelectorAll(".view-more-btn");
+  viewMoreButtons.forEach((button) =>
+    button.addEventListener("click", (event) => {
+      const recipeId = event.target.dataset.id;
+      fetchRecipeDetails(recipeId);
+    })
+  );
+}
+
+// Obtener detalles de una receta
+async function fetchRecipeDetails(id) {
+  try {
+    const response = await fetch(
+      `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
+    );
+    const recipe = await response.json();
+
+    // Mostrar los detalles en un modal o en un área específica
+    alert(
+      `Detalles de ${
+        recipe.title
+      }:\n\nIngredientes:\n${recipe.extendedIngredients
+        .map((ing) => `- ${ing.original}`)
+        .join("\n")}\n\nInstrucciones:\n${
+        recipe.instructions || "No disponibles"
+      }`
+    );
+  } catch (error) {
+    console.error("Error al cargar los detalles de la receta:", error);
+  }
+}
+
+// Evento de búsqueda
+searchRecipeBtn.addEventListener("click", () => {
+  const query = recipeInput.value.trim();
+  if (query) {
+    fetchRecipes(query);
+  } else {
+    recipeResults.innerHTML =
+      "<p>Por favor, introduce un término de búsqueda.</p>";
+  }
+});
