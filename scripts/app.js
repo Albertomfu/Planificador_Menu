@@ -71,47 +71,6 @@ document.querySelectorAll(".dropzone").forEach((dropzone) => {
   });
 });
 
-// Buscar recetas
-document
-  .getElementById("search-recipe-btn")
-  .addEventListener("click", function () {
-    const query = document.getElementById("recipe-input").value.trim();
-    if (query) {
-      // Simulamos la búsqueda de recetas con un array de ejemplo
-      const recipes = [
-        {
-          name: "Tortilla de Patatas",
-          description: "Una receta española con papas y huevos.",
-        },
-        {
-          name: "Ensalada de Atún",
-          description: "Una ensalada fresca con atún y verduras.",
-        },
-        // Añadir más recetas aquí...
-      ];
-
-      const filteredRecipes = recipes.filter((recipe) =>
-        recipe.name.toLowerCase().includes(query.toLowerCase())
-      );
-
-      const resultsDiv = document.getElementById("recipe-results");
-      resultsDiv.innerHTML = ""; // Limpiar resultados anteriores
-
-      filteredRecipes.forEach((recipe) => {
-        const recipeItem = document.createElement("div");
-        recipeItem.classList.add("recipe-item");
-        recipeItem.innerHTML = `
-        <h3>${recipe.name}</h3>
-        <p>${recipe.description}</p>
-        <button>Agregar al Menú</button>
-      `;
-        resultsDiv.appendChild(recipeItem);
-      });
-    } else {
-      alert("Por favor, ingresa un nombre de receta para buscar.");
-    }
-  });
-
 document.querySelectorAll(".dropzone").forEach((dropzone) => {
   let clickTimer = null; // Temporizador para diferenciar clic y doble clic
 
@@ -152,12 +111,14 @@ const API_KEY = "970d8ea12b4f46b4a870e2e1ac945a26";
 async function fetchRecipes(query) {
   try {
     const response = await fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=10&addRecipeInformation=true&apiKey=${API_KEY}`
+      `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=20&addRecipeInformation=true&apiKey=${API_KEY}`
     );
     const data = await response.json();
 
+    // Verificar la cantidad de resultados obtenidos
     if (data.results.length > 0) {
-      displayRecipes(data.results);
+      console.log(`${data.results.length} recetas encontradas.`); // Ver cuántos resultados se obtienen
+      displayRecipes(data.results); // Llamar a la función para mostrar las recetas
     } else {
       recipeResults.innerHTML = "<p>No se encontraron recetas.</p>";
     }
@@ -202,15 +163,18 @@ async function fetchRecipeDetails(id) {
     );
     const recipe = await response.json();
 
+    // Limpiar las instrucciones para mostrar solo el texto sin HTML
+    const instructions = recipe.instructions
+      ? recipe.instructions.replace(/<\/?[^>]+(>|$)/g, "")
+      : "No disponibles";
+
     // Mostrar los detalles en un modal o en un área específica
     alert(
       `Detalles de ${
         recipe.title
       }:\n\nIngredientes:\n${recipe.extendedIngredients
         .map((ing) => `- ${ing.original}`)
-        .join("\n")}\n\nInstrucciones:\n${
-        recipe.instructions || "No disponibles"
-      }`
+        .join("\n")}\n\nInstrucciones:\n${instructions}`
     );
   } catch (error) {
     console.error("Error al cargar los detalles de la receta:", error);
@@ -227,3 +191,24 @@ searchRecipeBtn.addEventListener("click", () => {
       "<p>Por favor, introduce un término de búsqueda.</p>";
   }
 });
+
+async function translateText(text, targetLanguage = "es") {
+  try {
+    const response = await fetch("https://libretranslate.de/translate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        q: text,
+        source: "en", // Idioma original de la respuesta de la API
+        target: targetLanguage, // Idioma destino (español)
+      }),
+    });
+    const data = await response.json();
+    return data.translatedText;
+  } catch (error) {
+    console.error("Error al traducir:", error);
+    return text; // Devuelve el texto original si hay un error
+  }
+}
