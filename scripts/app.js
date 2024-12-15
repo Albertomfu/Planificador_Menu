@@ -105,7 +105,10 @@ const searchRecipeBtn = document.getElementById("search-recipe-btn");
 const recipeResults = document.getElementById("recipe-results");
 
 // API Key de Spoonacular
-const API_KEY = "970d8ea12b4f46b4a870e2e1ac945a26";
+// const API_KEY = ;
+
+// Importar la clave API desde config.js
+import API_KEY from "./config.js";
 
 // Buscar recetas en la API
 async function fetchRecipes(query) {

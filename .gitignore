@@ -1,0 +1,16 @@
+# Ignorar archivos temporales del sistema operativo
+*.DS_Store
+Thumbs.db
+
+# Ignorar carpetas específicas
+/node_modules/
+/dist/
+
+# Ignorar archivos sensibles
+.env
+api-keys.txt
+
+# Ignorar logs y archivos temporales
+*.log
+*.tmp
+config.js
