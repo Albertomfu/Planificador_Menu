@@ -297,3 +297,7 @@ nav {
   background-color: #3498db;
   color: white;
 }
+
+.eliminarIngredientes {
+  list-style-type: none;
+}
