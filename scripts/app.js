@@ -114,7 +114,7 @@ import API_KEY from "./config.js";
 async function fetchRecipes(query) {
   try {
     const response = await fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=20&addRecipeInformation=true&apiKey=${API_KEY}`
+      `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=50&addRecipeInformation=true&apiKey=${API_KEY}`
     );
     const data = await response.json();
 
@@ -215,3 +215,69 @@ async function translateText(text, targetLanguage = "es") {
     return text; // Devuelve el texto original si hay un error
   }
 }
+
+// Botones
+const generateListBtn = document.getElementById("generate-list-btn");
+const exportPdfBtn = document.getElementById("export-pdf-btn");
+const sendEmailBtn = document.getElementById("send-email-btn");
+const shoppingListContent = document.getElementById("shopping-list-content");
+
+// Simula los ingredientes que ya tienes
+const availableIngredients = ["tomate", "cebolla", "pollo"];
+
+// Evento para generar la lista de compras
+generateListBtn.addEventListener("click", () => {
+  // Obtén los ingredientes arrastrados al calendario
+  const usedIngredients = Array.from(document.querySelectorAll(".dropped-item"))
+    .map((item) => item.textContent.trim())
+    .filter((item) => item !== "");
+
+  // Filtra los ingredientes faltantes
+  const missingIngredients = usedIngredients.filter(
+    (ingredient) => !availableIngredients.includes(ingredient.toLowerCase())
+  );
+
+  // Muestra la lista de compras
+  if (missingIngredients.length > 0) {
+    shoppingListContent.innerHTML = `
+      <h3>Ingredientes Faltantes:</h3>
+      <ul>
+        ${missingIngredients.map((ing) => `<li>${ing}</li>`).join("")}
+      </ul>
+    `;
+  } else {
+    shoppingListContent.innerHTML =
+      "<p>Tienes todos los ingredientes necesarios.</p>";
+  }
+});
+
+// Exportar como PDF
+exportPdfBtn.addEventListener("click", () => {
+  const content = shoppingListContent.innerHTML;
+
+  if (content.trim()) {
+    const doc = new jsPDF(); // Librería jsPDF para generar PDF
+    doc.html(shoppingListContent, {
+      callback: function (doc) {
+        doc.save("lista_compras.pdf");
+      },
+      x: 10,
+      y: 10,
+    });
+  } else {
+    alert("Por favor, genera la lista antes de exportar.");
+  }
+});
+
+// Enviar por correo (simulación)
+sendEmailBtn.addEventListener("click", () => {
+  const emailContent = shoppingListContent.textContent.trim();
+
+  if (emailContent) {
+    alert(
+      `Función en desarrollo: Aquí se enviaría la lista al correo configurado con el siguiente contenido:\n\n${emailContent}`
+    );
+  } else {
+    alert("Por favor, genera la lista antes de enviarla.");
+  }
+});

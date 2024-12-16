@@ -301,3 +301,38 @@ nav {
 .eliminarIngredientes {
   list-style-type: none;
 }
+
+#shopping-list {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+}
+
+#shopping-list-content {
+  margin: 20px 0;
+  font-size: 1.1em;
+  color: #333;
+}
+
+#shopping-list-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#shopping-list-actions button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+#shopping-list-actions button:hover {
+  background-color: #2980b9;
+}

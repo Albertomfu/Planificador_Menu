@@ -84,12 +84,23 @@
         </div>
         <div id="recipe-results"></div>
       </section>
+      <!-- Sección lista de la compra -->
+
+      <section id="shopping-list">
+        <h2>Lista de Compras</h2>
+        <div id="shopping-list-content"></div>
+        <div id="shopping-list-actions">
+          <button id="generate-list-btn">Generar Lista</button>
+          <button id="export-pdf-btn">Exportar como PDF</button>
+          <button id="send-email-btn">Enviar por Correo</button>
+        </div>
+      </section>
     </main>
 
     <footer>
       <p>© 2024 Planificador de Menús</p>
     </footer>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script type="module" src="scripts/app.js"></script>
   </body>
 </html>
