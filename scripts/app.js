@@ -165,23 +165,53 @@ async function fetchRecipeDetails(id) {
       `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
     );
     const recipe = await response.json();
-
-    // Limpiar las instrucciones para mostrar solo el texto sin HTML
-    const instructions = recipe.instructions
-      ? recipe.instructions.replace(/<\/?[^>]+(>|$)/g, "")
-      : "No disponibles";
-
-    // Mostrar los detalles en un modal o en un área específica
-    alert(
-      `Detalles de ${
-        recipe.title
-      }:\n\nIngredientes:\n${recipe.extendedIngredients
-        .map((ing) => `- ${ing.original}`)
-        .join("\n")}\n\nInstrucciones:\n${instructions}`
-    );
+    displayRecipeDetails(recipe); // Usar el modal para mostrar los detalles
   } catch (error) {
     console.error("Error al cargar los detalles de la receta:", error);
   }
+}
+
+// Mostrar los detalles en un modal
+function displayRecipeDetails(recipe) {
+  const modal = document.getElementById("recipe-modal");
+  const modalDetails = document.getElementById("modal-details");
+  const closeModal = document.querySelector(".close-btn");
+
+  // Limpiar las instrucciones para mostrar solo el texto sin HTML
+  const instructions = recipe.instructions
+    ? recipe.instructions.replace(/<\/?[^>]+(>|$)/g, "")
+    : "No disponibles";
+
+  // Crear el contenido del modal
+  modalDetails.innerHTML = `
+    <h2>${recipe.title}</h2>
+    <img src="${recipe.image}" alt="${
+    recipe.title
+  }" style="width: 100%; border-radius: 5px;" />
+    <h3>Ingredientes:</h3>
+    <ul>
+      ${recipe.extendedIngredients
+        .map((ing) => `<li>${ing.original}</li>`)
+        .join("")}
+    </ul>
+    <h3>Instrucciones:</h3>
+    <p>${instructions}</p>
+  `;
+
+  // Mostrar el modal
+  modal.classList.remove("hidden");
+
+  // Cerrar el modal al hacer clic en el botón de cerrar
+  closeModal.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+
+  // Cerrar el modal al hacer clic fuera del contenido
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.add("hidden");
+    }
+  });
 }
 
 // Evento de búsqueda

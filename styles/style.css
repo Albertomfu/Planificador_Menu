@@ -336,3 +336,54 @@ nav {
 #shopping-list-actions button:hover {
   background-color: #2980b9;
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 500px;
+  max-height: 80vh; /* Limitar la altura máxima del modal */
+  overflow-y: auto; /* Hacer que el contenido sea desplazable */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative; /* Asegurar que el botón de cerrar se posicione correctamente */
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.modal-content img {
+  display: block; /* Centrar la imagen */
+  margin: 0 auto 15px; /* Centrado horizontal con espacio inferior */
+  max-width: 100%; /* Asegura que no exceda el ancho del modal */
+  height: auto; /* Mantiene la proporción de la imagen */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra suave */
+  border: 2px solid #f2f2f2; /* Borde claro para resaltar la imagen */
+}
+.modal {
+  overflow-y: hidden; /* Prevenir el desplazamiento del fondo mientras el modal está abierto */
+}

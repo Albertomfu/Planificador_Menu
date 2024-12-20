@@ -22,7 +22,7 @@
     </header>
 
     <main>
-      Sección de Ingredientes
+      <!-- Sección de Ingredientes -->
       <section id="ingredients">
         <h2>Ingredientes Disponibles</h2>
         <div id="ingredients-list">
@@ -102,5 +102,12 @@
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script type="module" src="scripts/app.js"></script>
+    <!-- Modal para detalles de recetas -->
+    <div id="recipe-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div id="modal-details"></div>
+      </div>
+    </div>
   </body>
 </html>
