@@ -7,25 +7,52 @@
 
 body {
   font-family: "Arial", sans-serif;
-  background-color: #f7f9fc;
+  background-color: #e8f9da;
   color: #333;
   line-height: 1.6;
 }
 
 /* Cabecera */
+/* Fondo para el header */
 header {
-  background-color: #3498db;
+  background-image: url("../assets/images/header-background.png"); /* Ruta de la imagen */
+  background-size: cover; /* Escala la imagen para cubrir el área */
+  background-position: center; /* Centra la imagen */
   color: white;
   padding: 20px;
   text-align: center;
-  border-bottom: 4px solid #2980b9;
+  border-bottom: 4px solid #3daf20;
+  border-radius: 0 0 15px 15px; /* Bordes redondeados solo en la parte inferior */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para resaltar el header */
 }
 
 header h1 {
   font-size: 2.5em;
   margin: 0;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Sombra en el texto para mejor visibilidad */
 }
 
+nav {
+  margin-top: 10px;
+}
+
+.guide-link {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+  color: #3daf20;
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none;
+  border: 2px solid #3daf20;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.guide-link:hover {
+  background-color: #20690d;
+  color: white;
+}
 /* Secciones */
 main {
   padding: 30px 10%;
@@ -37,7 +64,7 @@ section {
 
 h2 {
   font-size: 2em;
-  color: #2980b9;
+  color: #3daf20;
   margin-bottom: 15px;
   text-align: center;
 }
@@ -67,7 +94,7 @@ h2 {
 
 #add-ingredient-btn {
   padding: 10px 20px;
-  background-color: #3498db;
+  background-color: #3daf20;
   color: white;
   font-size: 1em;
   border: none;
@@ -77,7 +104,7 @@ h2 {
 }
 
 #add-ingredient-btn:hover {
-  background-color: #2980b9;
+  background-color: #20690d;
 }
 
 #ingredient-list {
@@ -118,7 +145,7 @@ h2 {
 
 .day h3 {
   font-size: 1.5em;
-  color: #2980b9;
+  color: #3daf20;
   margin-bottom: 10px;
 }
 
@@ -174,7 +201,7 @@ h2 {
 
 #search-recipe-btn {
   padding: 10px 20px;
-  background-color: #3498db;
+  background-color: #3daf20;
   color: white;
   font-size: 1em;
   border: none;
@@ -185,7 +212,7 @@ h2 {
 }
 
 #search-recipe-btn:hover {
-  background-color: #2980b9;
+  background-color: #20690d;
 }
 
 /* Estilos para las recetas */
@@ -214,7 +241,7 @@ h2 {
 
 .recipe-item h3 {
   font-size: 1.2em;
-  color: #2980b9;
+  color: #3daf20;
   margin: 10px 0;
 }
 
@@ -234,12 +261,12 @@ h2 {
 }
 /* Footer */
 footer {
-  background-color: #3498db;
+  background-color: #3daf20;
   color: white;
   padding: 20px;
   text-align: center;
   margin-top: 40px;
-  border-top: 4px solid #2980b9;
+  border-top: 4px solid #3daf20;
 }
 
 footer p {
@@ -284,17 +311,17 @@ nav {
   display: inline-block;
   padding: 10px 15px;
   background-color: #ffffff;
-  color: #3498db;
+  color: #3daf20;
   font-size: 1em;
   font-weight: bold;
   text-decoration: none;
-  border: 2px solid #3498db;
+  border: 2px solid #3daf20;
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .guide-link:hover {
-  background-color: #3498db;
+  background-color: #20690d;
   color: white;
 }
 
@@ -324,7 +351,7 @@ nav {
 
 #shopping-list-actions button {
   padding: 10px 20px;
-  background-color: #3498db;
+  background-color: #3daf20;
   color: white;
   border: none;
   border-radius: 5px;
@@ -334,7 +361,7 @@ nav {
 }
 
 #shopping-list-actions button:hover {
-  background-color: #2980b9;
+  background-color: #20690d;
 }
 
 .modal {
