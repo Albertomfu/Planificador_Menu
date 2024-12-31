@@ -305,9 +305,9 @@ footer p {
 }
 
 /* Estilo para el enlace de la guía en la cabecera */
-/* nav {
+nav {
   margin-top: 10px;
-} */
+}
 
 .guide-link {
   display: inline-block;
