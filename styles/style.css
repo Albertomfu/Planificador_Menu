@@ -277,9 +277,9 @@ footer p {
 
 /* Media Queries */
 @media (max-width: 768px) {
-  /* body {
+  body {
     font-size: 1em;
-  } */
+  }
 
   #ingredients-list,
   #recipe-results {
