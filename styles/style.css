@@ -299,9 +299,9 @@ footer p {
     min-height: 50px;
   }
 
-  /* .recipe-item {
+  .recipe-item {
     width: 100%;
-  } */
+  }
 }
 
 /* Estilo para el enlace de la guía en la cabecera */
