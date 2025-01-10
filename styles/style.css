@@ -327,9 +327,9 @@ nav {
   color: white;
 }
 
-/* .eliminarIngredientes {
+.eliminarIngredientes {
   list-style-type: none;
-} */
+}
 
 #shopping-list {
   background-color: #fff;
