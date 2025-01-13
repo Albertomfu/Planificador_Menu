@@ -345,11 +345,11 @@ nav {
   color: #333;
 }
 
-/* #shopping-list-actions {
+#shopping-list-actions {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-} */
+}
 
 #shopping-list-actions button {
   padding: 10px 20px;
