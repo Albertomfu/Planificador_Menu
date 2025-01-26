@@ -362,9 +362,9 @@ nav {
   transition: background-color 0.3s;
 }
 
-#shopping-list-actions button:hover {
+/* #shopping-list-actions button:hover {
   background-color: #20690d;
-}
+} */
 
 .modal {
   position: fixed;
