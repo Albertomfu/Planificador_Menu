@@ -378,10 +378,10 @@ nav {
   justify-content: center;
   z-index: 1000;
 }
-/* 
+
 .modal.hidden {
   display: none;
-} */
+}
 
 .modal-content {
   background: rgb(255, 255, 255);
